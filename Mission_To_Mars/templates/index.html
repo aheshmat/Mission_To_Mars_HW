@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">   
+    <title>
+        Welcome to Mars Facts!
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+            <div class="jumbotron text-center">
+                <h1>Mission to Mars</h1>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+            </div>
+            <h3>Latest Mars News</h3>
+            <p><span style="font-weight:bold">{{ mars.titles }}</span></p>
+            <p>{{ mars.news_texts_list }}</p>
+            <div class="row">
+                <div class="col-xs-8 col-md-8">
+                    <h3>Featured Mars Image: </h3>
+                    <img src="{{ mars.featured_image_url | default('static/images/error.png')}}" style="width:100%" class="img-responsive"
+                        style="padding-right: 20px; padding left: 20px;" alt="featured_image"><br />
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <div class="col-xs-auto col-md-auto" border="1">
+                        <h3>Current Weather on Mars</h3>
+                        <p> {{ mars.mars_weather }} </p>
+                    </div>
+                    <div class="col-xs-auto col-md-auto">
+                        <h3>Mars Facts</h3>
+                        <style>
+                            table, th, td {
+                                border: 1px solid black;
+                            }
+                            th, td {
+                                padding: 5px;
+                            }
+                        </style>
+                        {{ mars.facts_table | safe}}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h3 class="text-center">Mars Hemispheres</h3>
+            <br>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <img src="{{ mars.hemisphere_image_urls[3]['img_url'] | default('static/images/error.png')}}" style="width:100%" class="img-responsive"
+                        style="padding-right: 20px; padding left: 20px;"
+                        alt=" {{mars.hemisphere_image_urls[3]['title']}} " />
+                    <h5>{{mars.hemisphere_image_urls[3]['title']}}</h5>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <img src="{{ mars.hemisphere_image_urls[0]['img_url'] | default('static/images/error.png') }}" style="width:100%" class="img-responsive"
+                        style="padding-right: 20px; padding left: 20px;"
+                        alt=" {{mars.hemisphere_image_urls[0]['title'] }} " />
+                    <h5>{{mars.hemisphere_image_urls[0]['title']}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <img src="{{ mars.hemisphere_image_urls[1]['img_url'] | default('static/images/error.png') }}" style="width:100%" class="img-responsive"
+                        style="padding-right: 20px; padding left: 20px;"
+                        alt=" {{mars.hemisphere_image_urls[1]['title']}} " />
+                    <h5>{{mars.hemisphere_image_urls[1]['title']}}</h5>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <img src="{{ mars.hemisphere_image_urls[2]['img_url'] | default('static/images/error.png') }}" style="width:100%" class="img-responsive"
+                        style="padding-right: 20px; padding left: 20px;"
+                        alt=" {{mars.hemisphere_image_urls[2]['title']}} " />
+                    <h5>{{mars.hemisphere_image_urls[2]['title']}}</h5>
+                </div> 
+            </div>
+    </div>
+</body>
+</html>
